@@ -1,0 +1,104 @@
+<html>
+
+<head>
+    <title>Random Multiple Text Placement</title>
+
+    <style>
+        #container {
+            position: relative;
+        }
+
+        .movingtext {
+            position: absolute;
+            font-size: 2em;
+            opacity: 0;
+            transition: 1s opacity;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="container">
+
+    </div>
+
+</body>
+
+<script>
+    var x;
+    var y;
+    var xRand;
+    var yRand;
+    var numberOfText = 20;
+
+    function getRandNum(max) {
+        // generate random number from 0 to max given variable
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    //console.log(x,y);
+
+    function changePosOfText(divToMove) {
+        // get height and width
+        window.x = window.innerHeight;
+        window.y = window.innerWidth;
+        // get random number between zero and the height and width values
+        window.xRand = getRandNum(window.x);
+        window.yRand = getRandNum(window.y);
+        // change top and right style for the div being moved
+        document.getElementById(divToMove).style.top = window.xRand + "px";
+        document.getElementById(divToMove).style.right = window.yRand + "px";
+        //console.log(window.xRand,window.yRand);
+    }
+
+    function createDivs(num) {
+        var i = 0;
+        while (i < num) {
+            //console.log(i); //test
+
+            // create a new div element 
+            var newDiv = document.createElement("div");
+            // add id to div
+            newDiv.id = 'div' + (i + 1);
+            // add class to div
+            newDiv.className = "movingtext";
+            // add text to div. add 1 to i so i is 1 the first time
+            var newText = document.createTextNode("div " + (i + 1));
+            // add the text node to div
+            newDiv.appendChild(newText);
+            // get current div as a variable
+            var container = document.getElementById('container');
+            // add new div to bottom of selected div
+            container.appendChild(newDiv);
+
+            // add 1 to i
+            i++;
+        }
+
+    }
+
+    // run function to create divs add start of page
+    window.onload = createDivs(numberOfText);
+
+
+    window.setInterval(function() {
+        // get number of random div and add 1 because we don't want 0 we want 1 thru numberOfText
+        var randDiv = getRandNum(numberOfText) + 1;
+        var randDiv = "div" + randDiv;
+        //console.log(randDiv);
+        // change text position
+        // by changing opacity to 0 and waiting 
+        // then changing back to 1
+        document.getElementById(randDiv).style.opacity = '0';
+        setTimeout(function() {
+            changePosOfText(randDiv);
+        }, 1000);
+        setTimeout(function() {
+            document.getElementById(randDiv).style.opacity = '1';
+        }, 1000);
+    }, 2000);
+</script>
+
+</html>

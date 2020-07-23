@@ -1,0 +1,68 @@
+<html>
+	<head>
+		<title>Random Text Placement</title>
+	
+		<style>
+			#container {
+				position:relative;
+			}
+			#text {
+				position:absolute;
+				font-size:2em;
+				opacity: 0;
+				transition: 1s opacity;
+			}
+
+		</style>
+	
+	</head>
+	
+	<body>
+		
+		<div id="container">
+			<div id="text">
+				$$$
+			</div>
+		</div>
+		
+	</body>
+
+	<script>
+		var x;
+		var y;
+		var xRand;
+		var yRand;
+		
+		
+		//function from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+		function getRandomInt(max) {
+			return Math.floor(Math.random() * Math.floor(max));
+		}
+		
+		//console.log(x,y);
+		
+		function changePosOfText() {
+			window.x = window.innerHeight;
+			window.y = window.innerWidth;
+			window.xRand = getRandomInt(window.x);
+			window.yRand = getRandomInt(window.y);
+			document.getElementById("text").style.top = window.xRand + "px";
+			document.getElementById("text").style.right = window.yRand + "px";
+			//console.log(window.xRand,window.yRand);
+		}
+		
+		window.setInterval(function(){
+			//change text position every second
+			document.getElementById('text').style.opacity = '0';
+			setTimeout(function(){ 
+				changePosOfText(); 
+			}, 1000);
+			setTimeout(function(){ 
+				document.getElementById('text').style.opacity = '1';
+			}, 1000);
+		}, 2000);
+		
+		
+	</script>
+	
+</html>

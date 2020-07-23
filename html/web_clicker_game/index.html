@@ -1,0 +1,179 @@
+<html>
+	<head>
+		<title>Clicker Game</title>
+	
+		<style>
+			.center {
+				margin: auto;
+				width: 50%;
+				/*border: 3px solid green;*/
+				padding: 10px;
+			}
+			
+			
+			#addmultnotenoughmoney, #addclicknotenoughmoney {
+				color: red;
+				font-weight: bold;
+			
+			}
+			
+			.money {
+				color: green;
+				font-weight: bold;
+				font-size: 1.5em;
+			}
+			
+			
+
+		</style>
+	
+	</head>
+	
+	<body>
+		
+		<div class="center">
+			<div id="totalmoney">
+				<span class="money">$<span id="totalmoney_int">0</span></span>
+			</div>
+			<div id="totalclicks">
+				Number of Clicks <span id="totalclicks_int">0</span>
+			</div>
+			<div id="clickerbutton">
+				<button onclick='addmoney();'>Click Me!</button>
+			</div>
+			<br>
+			<div id="multipliercost">
+				Multiplier Upgrade Cost $<span id="multipliercost_int">20</span> <span id="addmultnotenoughmoney"></span>
+			</div>
+			<div id="multiplierbutton">
+				<button onclick='addmultiplier();'>Add multiplier</button>
+			</div>
+			<div id="currentmultiplier">
+				Current Money Multiplier <span id="currentmultiplier_int">1</span>x
+			</div>
+			<br>
+			<div id="autoclickcost">
+				Auto Click Upgrade Cost $<span id="autoclickcost_int">20</span> <span id="addclicknotenoughmoney"></span>
+			</div>
+			<div id="autoclickbutton">
+				<button onclick='addautoclick();'>Add Auto Clicker</button>
+			</div>
+			<div id="autoclick">
+				Current Auto Clicks per second <span id="autoclickspersec">0</span>
+			</div>
+			
+			<div id="mps">
+				Idle Money Per Second $<span id="moneypersec">0</span>
+			</div>
+		</div>
+		
+	</body>
+
+	<script>
+		var totalclicks = 0;
+		var totalmoney = 0;
+		var moneymultiplier = 1;
+		var multipliercost = 20;
+		var autoclicks = 0;
+		var autoclickcost = 20 * 1.50 ** (autoclicks / 2);
+		var moneypersecond;
+		
+		
+		function addmoney() {
+			//console.log(window.totalmoney);
+			window.totalmoney = window.totalmoney + (1*moneymultiplier);
+			window.totalclicks = window.totalclicks + 1;
+			
+			updatescreen();
+		}
+		
+		function addmultiplier() {
+			if (totalmoney < multipliercost) {
+				document.getElementById("addmultnotenoughmoney").innerHTML = "Not enough money";
+			} else {
+				//remove money
+				window.totalmoney = window.totalmoney - multipliercost;
+				//change multiplier 
+				window.moneymultiplier = window.moneymultiplier + 0.5;
+				//change multiplier cost
+				//window.multipliercost = window.multipliercost * 1.33;
+				multipliercost = 20 * 1.20 ** (moneymultiplier / 2);
+				
+				updatescreen();
+			}
+		}
+		
+		
+		function addautoclick() {
+			
+			if (totalmoney < autoclickcost) {
+				document.getElementById("addclicknotenoughmoney").innerHTML = "Not enough money";
+			} else {
+				//remove money
+				window.totalmoney = window.totalmoney - autoclickcost;
+				//change auto click amount 
+				window.autoclicks = window.autoclicks + 1;
+				//change auto click cost
+				//window.autoclickcost = window.autoclickcost * 1.66;
+				autoclickcost = 20 * 1.50 ** (autoclicks / 2);
+				
+				updatescreen();
+			}
+		}
+		
+		function autoclick() {
+			//auto click for user every second if auto clicks have been purchased
+			if (autoclicks > 0) {
+				for (var i=0; i < autoclicks; i++) {
+					addmoney();
+				}
+								
+			} else {
+				//do nothing
+			}
+		}
+		
+		window.setInterval(function(){
+			//run auto click function ever second
+			autoclick();
+		}, 1000);
+		
+		
+		function updatescreen() {
+			//function to call to update everything on the screen for the user instead of updating it in each function.
+			
+			//update total money text
+			document.getElementById("totalmoney_int").innerHTML = window.totalmoney;
+			
+			//update number of clicks
+			document.getElementById("totalclicks_int").innerHTML = window.totalclicks;
+			
+			//update multiplier not enough money text
+			document.getElementById("addmultnotenoughmoney").innerHTML = "";
+			//update current multiplier text
+			document.getElementById("currentmultiplier_int").innerHTML = window.moneymultiplier;
+			//update multiplier cost text
+			document.getElementById("multipliercost_int").innerHTML = window.multipliercost;
+			
+			//update auto click not enough money cost
+			document.getElementById("addclicknotenoughmoney").innerHTML = "";
+			//update auto click cost
+			document.getElementById("autoclickcost_int").innerHTML = window.autoclickcost;
+			//update auto click amount text
+			document.getElementById("autoclickspersec").innerHTML = window.autoclicks;
+			
+			//update idle money per secon
+			if (autoclicks != 0) {
+				moneypersecond = moneymultiplier * autoclicks;
+			} else {
+				moneypersecond = 0;
+			}
+			document.getElementById("moneypersec").innerHTML = window.moneypersecond;
+			
+		}
+		
+		
+		
+	</script>
+	
+</html>

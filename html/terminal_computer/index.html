@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		
+			@font-face {
+			   font-family: 'myfont';
+			   src: url(Commodore-64-v6.3.TTF)
+			   format('truetype');
+			}
+			body {
+				/*font-family: 'myfont';*/
+				background-color: black;
+				color: rgb(0,255,0);
+				margin:0px;
+				padding: 0px;
+				overflow-x: hidden;
+			}
+			
+			
+			h1 {
+				font-family:'myfont';
+				margin:0px;
+			}
+/*
+			xmp { 
+				/*font-family: 'myfont'; */
+				font-size: 100%;
+				width:auto;
+			}
+			
+			pre {
+			margin: 0px;
+			padding: 0px;
+			max-width:100px;
+			}
+*/			
+			#menu {
+				padding-left: 1em;
+			}
+			#menu a {
+				color: rgb(0,255,0);
+				width:auto;
+				padding-left: 10px;
+				max-width:100px;
+			}
+			
+			#equalsdiv {
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			#equals {
+				margin: 0px;
+				padding: 0px;
+			}
+			
+		</style>
+	</head>
+	<body class="body">
+		<!--xmp tags will show html on the page
+		http://stackoverflow.com/questions/2820453/display-html-code-in-html-->
+		<h1><code>&lt;/My Website></code></h1>
+		
+		<div id="menu">
+			<a href="#"><code>&lt;/Link></code></a>
+			<a href="#"><code>&lt;/Link></code></a>
+			<a href="#"><code>&lt;/Link></code></a>
+		</div>
+		
+	<div id="equalsdiv"><p id="equals"></p></div>
+	
+	<!--<p style="font-size:5em;">=========================</p>-->
+<!--<script>
+function myFunction() {
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+	var wnew = w/10;
+    //document.getElementById("demo").innerHTML = "Width: " + w + "<br>Height: " + h;
+	document.getElementById("demo").innerHTML = (Array(Math.round(wnew)+1).join("a"));
+	document.getElementById("equals").innerHTML = (Array(Math.round(wnew)+1).join("="));
+}
+var x = 2;
+//http://stackoverflow.com/questions/1877475/repeat-character-n-times
+//the array will drop a count so if x = 2 then it would only put 1. thats why we add 1.
+//document.write(Array(x+1).join("a"));
+
+
+//checks if width changes http://stackoverflow.com/questions/10750603/jquery-detect-a-window-width-change-but-not-a-height-change
+
+
+
+
+
+</script>
+<button onclick="myFunction()">Try it</button>
+<p id="demo"></p>-->
+		
+				
+	</body>
+
+<script>
+
+//http://stackoverflow.com/questions/5835126/javascript-infinite-loop
+function start() {
+  // your code here
+  var w = window.innerWidth;
+	var wnew = w/8;
+	//document.getElementById("demo").innerHTML = (Array(Math.round(wnew)+1).join("a"));
+	document.getElementById("equals").innerHTML = (Array(Math.round(wnew)+1).join("="));
+  setTimeout(start, 1);
+}
+//document.write(window.innerWidth);
+// boot up the first call
+start();
+</script>	
+	
+</html>

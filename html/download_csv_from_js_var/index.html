@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS CSV</title>
+</head>
+<body>
+<!--https://stackoverflow.com/questions/13405129/javascript-create-and-save-file-->
+<!--
+    <button id="b">export to CSV</button>
+    <script type="text/javascript">
+        function exportToCsv() {
+            var myCsv = "Col1,Col2,Col3\nval1,val2,val3";
+
+            window.open('data:text/csv;charset=utf-8,' + escape(myCsv));
+        }
+
+        var button = document.getElementById('b');
+        button.addEventListener('click', exportToCsv);
+    </script>
+	
+	
+
+<!--
+<script>
+setTimeout("create('Hello world!', 'myfile.csv', 'text/plain')");
+function create(text, name, type) {
+  var dlbtn = document.getElementById("dlbtn");
+  var file = new Blob([text], {type: type});
+  dlbtn.href = URL.createObjectURL(file);
+  dlbtn.download = name;
+}
+</script>
+
+<a href="javascript:void(0)" id="dlbtn"><button>click here to download your file</button></a>
+-->
+
+<script>
+// Function to download data to a file
+function download(data, filename, type) {
+    var file = new Blob([data], {type: type});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var a = document.createElement("a"),
+                url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);  
+        }, 0); 
+    }
+}
+</script>
+<button onclick="download('HELLO,hello,43110\ntest,test2,test3', 'test.csv', 'text/plain')">click me</button>
+
+
+
+
+
+</body>
+</html>

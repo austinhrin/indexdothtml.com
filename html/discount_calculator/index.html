@@ -1,0 +1,69 @@
+<html>
+
+<head>
+    <title>Discount Calculator</title>
+    <meta charset='UTF-8'>
+    <meta name='description' content='Discount Calculator'>
+    <meta name='keywords' content='Discount Calculator, Calculator, Discount'>
+    <meta name='author' content='Austin Hrin'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 1.1em;
+        }
+
+        #container {
+            margin: 20px;
+        }
+
+        h1,
+        h2 {
+            font-size: 1.5em;
+        }
+    </style>
+    <script>
+        function calculate_price() {
+            // get value fields
+            var product_cost = document.getElementById('product_cost').value;
+            var discount_percentage = document.getElementById('discount_percentage').value;
+            var tax_percentage = document.getElementById('tax_percentage').value;
+            // remove percentages if user inputted
+            discount_percentage.replace('%', '');
+            tax_percentage.replace('%', '');
+            // get price header and span
+            var new_price = document.getElementById('new_price')
+            var new_price_text = document.getElementById('new_price_text');
+            // do calculation
+            var discounted_price = (product_cost * (1 - (discount_percentage / 100))) * (1 + (tax_percentage / 100));
+            // round to to decimal places
+            var rounded_price = discounted_price.toFixed(2);
+            // add new price to text
+            new_price.innerHTML = rounded_price;
+            // display new price text
+            new_price_text.style.display = 'block';
+        }
+    </script>
+</head>
+
+<body>
+    <div id='container'>
+        <h1>Discount Calculator</h1>
+        <form onsubmit='return false;'>
+            <label for='product_cost'>Product Cost</label>
+            <input id='product_cost' type='number'>
+            <br>
+            <label for='discount_percentage'>Discount Percentage (default 20%)</label>
+            <input id='discount_percentage' type='number' value='20'>
+            <br>
+            <label for='tax_percentage'>Tax Percentage (default 7%)</label>
+            <input id='tax_percentage' type='number' value='7'>
+            <br>
+            <button onclick='calculate_price();'>Calculate</button>
+        </form>
+        <h2 id='new_price_text' style='display: none;'>Calculated Price: <span id='new_price'></span></h2>
+    </div>
+</body>
+
+</html>

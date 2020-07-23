@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>test page</title>
+
+    <style>
+
+    </style>
+
+    <script>
+        function chkboxselected(a) {
+            document.getElementById("myDiv").innerHTML = "" + a;
+
+
+        }
+
+        function submitchkboxform() {
+            //alert('test');
+            var x = document.getElementById("testcheckbox").checked;
+            document.getElementById("myDiv").innerHTML = x;
+            if (x == 'false') {
+                alert('checkbox is not checked');
+                //var chkboxformaction = getElementById("chkboxform").action;
+                getElementById("chkboxform").action = "file:///C:/Users/Support/Desktop/html,js,css%20testing/execute%20javascript%20on%20checkbox%20click/test.html?testcheckbox=";
+                //document.getElementById("chkboxform").submit();
+            } else {
+                document.getElementById('testcheckboxhidden').disabled = true;
+
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <!--<form method="get" action="file:///C:/Users/Support/Desktop/html,js,css%20testing/execute%20javascript%20on%20checkbox%20click/test.html">-->
+    <form id="chkboxform" method="get" onSubmit="return false;">
+        <input type="checkbox" id="testcheckbox" name="testcheckbox" value="test" onclick="chkboxselected(1);">
+        <!--<input type="submit" value="Submit" onclick="submitchkboxform();">-->
+        <button onclick='getElementById("chkboxform").action = "file:///C:/Users/Support/Desktop/html,js,css%20testing/execute%20javascript%20on%20checkbox%20click/test.html?testcheckbox=";submitchkboxform();'>Submit</button>
+    </form>
+    <!--<button onclick="submitchkboxform();">check checkbox status</button>-->
+    <div id="myDiv">Checkbox not checked</div>
+</body>
+
+</html>
