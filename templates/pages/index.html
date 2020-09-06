@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}Index.html{% endblock %}
+
+{% block content %}
+<div class="tiles">
+    <h1 class='projectsBy'>Showcased Projects</h1>
+    <p class='doyouwant'>Do you want your project showcased? <a href="/contact.html">Contact us!</a></p>
+    <div class='tile'>
+        <img src="/html/discount_calculator/screenshot.PNG" alt='Discount Calculator'>
+        <a href="/html/discount_calculator/index.html" target="__blank__">
+            <div class="tilecontent">
+                <h2>Discount Calculator</h2>
+                <p>Calculate purchase price with a percentage discount easily!</p>
+            </div>
+        </a>
+    </div>
+    <div class='tile'>
+        <img src="/html/web_clicker_game/screenshot.PNG" alt='Web Clicker Game'>
+        <a href="/html/web_clicker_game/index.html" target="__blank__">
+            <div class="tilecontent">
+                <h2>Web Clicker Game</h2>
+                <p>Basic clicker game inspired by mobile clicker games.</p>
+            </div>
+        </a>
+    </div>
+    <div class="tile">
+        <img src="/html/json2html/screenshot.PNG" alt='JSON2HTML'>
+        <a href='/html/json2html/index.html' target="__blank__">
+            <div class="tilecontent">
+                <h2>JSON2HTML</h2>
+                <p>Write your HTML in JSON so that it can easily be reproduced using JavaScript. This was created as a solution for hard coding the same HTML in multiple areas of an application.</p>
+            </div>
+        </a>
+    </div>
+    <div class="tile">
+        <img src="/html/download_csv_from_js_var/screenshot.PNG" alt='Download CSV from JS variable'>
+        <a href="/html/download_csv_from_js_var/index.html" target="__blank__">
+            <div class="tilecontent">
+                <h2>JS variable to CSV</h2>
+                <p>Download a .csv file from a webpage where there isn't actually a .csv file. The .csv file is created from a JavaScript variable which the user can "download".</p>
+            </div>
+        </a>
+    </div>
+    <div class="tile">
+        <img src="/html/austinhrin.com/screenshot.PNG" alt='http://austinhrin.com'>
+        <a href="http://austinhrin.com" target="__blank__">
+            <div class="tilecontent">
+                <h2>Windows 9x/XP > Website</h2>
+                <p>A Windows 9x/XP themed website. Still a WIP.</p>
+            </div>
+        </a>
+    </div>
+    <div class="tile">
+        <img src="/html/random_text_placement/multiple text divs/screenshot.PNG" alt='Display divs randomly'>
+        <a href="/html/random_text_placement/multiple text divs/index.html" target="__blank__">
+            <div class="tilecontent">
+                <h2>Display divs randomly</h2>
+                <p>Randomly Display div tags on your webpage. This was originally made for a game but it could also be used as an interesting background for your website!</p>
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock %}

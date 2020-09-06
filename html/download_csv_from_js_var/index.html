@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>JS CSV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            font-size: 1.1em;
+        }
+    </style>
 </head>
+
 <body>
-<!--https://stackoverflow.com/questions/13405129/javascript-create-and-save-file-->
-<!--
+    <!--https://stackoverflow.com/questions/13405129/javascript-create-and-save-file-->
+    <!--
     <button id="b">export to CSV</button>
     <script type="text/javascript">
         function exportToCsv() {
@@ -34,31 +42,30 @@ function create(text, name, type) {
 <a href="javascript:void(0)" id="dlbtn"><button>click here to download your file</button></a>
 -->
 
-<script>
-// Function to download data to a file
-function download(data, filename, type) {
-    var file = new Blob([data], {type: type});
-    if (window.navigator.msSaveOrOpenBlob) // IE10+
-        window.navigator.msSaveOrOpenBlob(file, filename);
-    else { // Others
-        var a = document.createElement("a"),
-                url = URL.createObjectURL(file);
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        setTimeout(function() {
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);  
-        }, 0); 
-    }
-}
-</script>
-<button onclick="download('HELLO,hello,43110\ntest,test2,test3', 'test.csv', 'text/plain')">click me</button>
-
-
-
-
+    <script>
+        // Function to download data to a file
+        function download(data, filename, type) {
+            var file = new Blob([data], {
+                type: type
+            });
+            if (window.navigator.msSaveOrOpenBlob) // IE10+
+                window.navigator.msSaveOrOpenBlob(file, filename);
+            else { // Others
+                var a = document.createElement("a"),
+                    url = URL.createObjectURL(file);
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(function() {
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(url);
+                }, 0);
+            }
+        }
+    </script>
+    <button onclick="download('HELLO,hello,43110\ntest,test2,test3', 'test.csv', 'text/plain')">click me</button>
 
 </body>
+
 </html>

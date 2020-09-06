@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}Blog.html{% endblock %}
+
+{% block content %}
+<div id="content">
+    {% include 'ad_mobile_horizontal.html' %}
+    <div id="blog">
+        {% for post in posts %}
+        <a href="{{post.url}}">
+            <div class='post'>
+                <h1 class="title">{{ post.title }}</h1>
+                <p class="posted_datetime">{{ post.posted_datetime }}</p>
+                <p class="author">{{ post.author }}</p>
+                <div class="content">
+                    <p>{{ post.content[0].innerHTML }} Click to read more...</p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% include 'ad_sidebar.html' %}
+{% endblock %}

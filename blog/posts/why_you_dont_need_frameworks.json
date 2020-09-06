@@ -1,0 +1,66 @@
+{
+    "title": "Why you don't need frameworks",
+    "posted_datetime": "8/13/2020 - 1:23pm",
+    "author": "Austin Hrin",
+    "url": "/blog/why_you_dont_need_frameworks.html",
+    "content": [{
+        "tagName": "p",
+        "innerHTML": "In this post we will go over why you don't need a framework for your website."
+    }, {
+        "tagName": "h3",
+        "innerHTML": "What you will gain not using a framework:"
+    }, {
+        "tagName": "ul",
+        "children": [{
+            "tagName": "li",
+            "innerHTML": "Speed"
+        }, {
+            "tagName": "li",
+            "innerHTML": "Performance"
+        }, {
+            "tagName": "li",
+            "innerHTML": "No need to deal with legacy frameworks in the future."
+        }]
+    }, {
+        "tagName": "p",
+        "innerHTML": "The simple answer is everything you need to do can easily be done in plain vanilla HTML, CSS, and JavaScript. Why do you want to bloat your website with 100's of KB of code from frameworks when the solution is less than 1 KB. In most cases it is under half of that. The more your users have to download to their computer or phone impacts the performance of the website. If your users have to wait for the website to download and wait for the JavaScript and CSS to render they will leave. The longer they have to wait the more fed up they will get and leave."
+    }, {
+        "tagName": "p",
+        "innerHTML": "If you are just learning web development DONT use a framework. It will complicate everything and confuse you when creating websites is actually really simple."
+    }, {
+        "tagName": "p",
+        "innerHTML": "Frameworks are great for rapid prototyping and MVPs but that is it. When you are developing a website 90% of the framework isn't even used. Do you really want to make your users download code where 90% is not even relevant to the page at all?"
+    }, {
+        "tagName": "p",
+        "innerHTML": "Instead you should learn how to master HTML, CSS, and JavaScript to create your websites. Mastering HTML, CSS, and JavaScript will be more valuable to both you and employers instead of knowing basic knowledge of them and basic knowledge of say jQuery, Bootstrap, and Vue.js. These libraries have their use cases but for beginners learning to code mastering your craft if more important."
+    }, {
+        "tagName": "ul",
+        "children": [{
+            "tagName": "li",
+            "innerHTML": "Responsive websites? Use CSS media queries."
+        }, {
+            "tagName": "li",
+            "innerHTML": "Interactive websites? Master JavaScript."
+        }, {
+            "tagName": "li",
+            "innerHTML": "Blogs? Store your blog post in a JSON file and call it from JavaScript to display on the front end."
+        }, {
+            "tagName": "li",
+            "innerHTML": "One page applications? Split your code into templates and use JavaScript to call the templates and display them on the page."
+        }]
+    }, {
+        "tagName": "p",
+        "innerHTML": "Here are some recommended books for your consideration:"
+    }, {
+        "tagName": "span",
+        "innerHTML": "<iframe style='width:120px;height:240px;' marginwidth='0' marginheight='0' scrolling='no' frameborder='0' src='http://ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=indexdothtml-20&language=en_US&marketplace=amazon&region=US&placement=1491952024&asins=1491952024&linkId=bd5c4812d2d3803ce4daed6f4f1331d5&show_border=true&link_opens_in_new_window=true'></iframe>"
+    }, {
+        "tagName": "span",
+        "innerHTML": "<iframe style='width:120px;height:240px;' marginwidth='0' marginheight='0' scrolling='no' frameborder='0' src='http://ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=indexdothtml-20&language=en_US&marketplace=amazon&region=US&placement=1839211563&asins=1839211563&linkId=1e70813fe682a15a7ff5f071edeb1675&show_border=true&link_opens_in_new_window=true'></iframe>"
+
+    }, {
+        "tagName": "span",
+        "innerHTML": "<iframe style='width:120px;height:240px;' marginwidth='0' marginheight='0' scrolling='no' frameborder='0' src='http://ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=indexdothtml-20&language=en_US&marketplace=amazon&region=US&placement=1449393195&asins=1449393195&linkId=4724065e2658fbc194822515e0182c54&show_border=true&link_opens_in_new_window=true'></iframe>"
+
+    }]
+}
