@@ -10,12 +10,11 @@ import datetime
 import htmlmin
 #from slimmer import html_slimmer # or xhtml_slimmer, css_slimmer
 from css_html_js_minify import html_minify, js_minify, css_minify
+from PIL import Image
 
 # get current directory
 path = os.getcwd()
 
-# build css files
-# build js files (no js files right now...)
 # copy /images/favicon.ico to /favicon.ico
 # create a sitemap.xml file for the website.
 
@@ -85,7 +84,6 @@ def build_html():
     # create all pages in list
     for page in list_of_pages:
         print(f'Building {page}')
-        #build_html(page)
 
         with urllib.request.urlopen(f'http://127.0.0.1:5000/{page}.html') as response:
             html = response.read()
@@ -94,52 +92,115 @@ def build_html():
             html = html_minify(html)
             html = remove_spaces(html)
             save_file(html, f'{page}.html', '/build')
-            #print(html)
 
 
-def build(folder):
-    files = os.listdir(f'{path}/{folder}')
+def build(files, file_type):
     for filename in files:
         # read file
-        f = open(f'{path}/{folder}/{filename}', "r")
+        f = open(f'{path}/{filename}', "r")
         contents = f.read()
         f.close()
         # minify contents
-        if folder == 'js':
+        if file_type == 'js':
             contents = js_minify(contents)
-        if folder == 'css':
+        if file_type == 'css':
             contents = css_minify(contents, comments=False)
         contents = remove_spaces(contents)
         # save file
-        f = open(f'{path}/build/{folder}/{filename}', "x")
+        f = open(f'{path}/build/{filename}', "x")
         f.write(contents)
         f.close()
-        print(f'Created {path}/build/{folder}/{filename}')
+        print(f'Created {path}/build/{filename}')
 
+
+def build_images(images):
+    for image in images:
+        # save favicon.ico in /build folder
+        # else save in /build/images
+        if 'favicon.ico' in image:
+            img = Image.open(f'{path}/{image}')
+            img.save(f'{path}/build/{image}', optimize=True)
+        else:
+            img = Image.open(f'{path}/{image}')
+            img.save(f'{path}/build/{image}', quality=20, optimize=True)
+            print(f'Created {path}/build/{image}')
+
+
+def copy_files(files):
+    for filename in files:
+        shutil.copyfile(f'{path}/{filename}', f'{path}/build/{filename}')
+
+folders_to_create = ['build', 'build/blog', 'build/css', 'build/js', 'build/projects', 'build/images']
 
 list_of_pages = ['index', 'about', 'contact', 'blog']
+css_files = ['css/main.css']
+js_files = []
+image_files = []
+other_files = []
 
 # add blog pages to list of pages
 blog_pages = os.listdir(f'{path}/blog/posts')
 for page in blog_pages:
     list_of_pages.append(f'blog/{page[:-5]}')
 
-folders_to_create = ['build', 'build/blog', 'build/css', 'build/js', 'build/html', 'build/images']
+# add project html, css, js, images, and other files to their lists
+projects = os.listdir(f'{path}/projects')
+for project in projects:
+    folders_to_create.append(f'build/projects/{project}')
+    files = os.listdir(f'{path}/projects/{project}')
+    for f in files:
+        f = f.lower()
+        # if no . in f then its a folder
+        if '.' in f:
+            if '.html' in f:
+                list_of_pages.append(f'projects/{project}/{f[:-5]}')
+            elif '.css' in f:
+                css_files.append(f'projects/{project}/{f}')
+            elif '.js' in f:
+                js_files.append(f'projects/{project}/{f}')
+            elif '.jpeg' in f or '.jpg' in f or '.png' in f:
+                image_files.append(f'projects/{project}/{f}')
+            else:
+                other_files.append(f'projects/{project}/{f}')
+        else:
+            folders_to_create.append(f'build/projects/{project}/{f}')
+            files2 = os.listdir(f'{path}/projects/{project}/{f}')
+            for f2 in files2:
+                # if no . in f2 then its a folder
+                if '.' in f2:
+                    if '.html' in f2:
+                        list_of_pages.append(f'projects/{project}/{f}/{f2[:-5]}')
+                    elif '.css' in f2:
+                        css_files.append(f'projects/{project}/{f}/{f2}')
+                    elif '.js' in f2:
+                        js_files.append(f'projects/{project}/{f}/{f2}')
+                    elif '.jpeg' in f2 or '.jpg' in f2 or '.png' in f2.lower():
+                        image_files.append(f'projects/{project}/{f}/{f2}')
+                    else:
+                        other_files.append(f'projects/{project}/{f}/{f2}')
 
-# Create folders
+
+# Delete build folder
 try:
     shutil.rmtree(f'{path}/build')
 except FileNotFoundError:
     _error = 'file not found'
 
+# create folders
 for folder in folders_to_create:
-    print(folder)
     create_folder(folder)
 
 # build files
 build_html()
-build('css')
-build('js')
+build(css_files, 'css')
+build(js_files, 'js')
+build_images(image_files)
+
+# copy files that shouldn't be compressed
+copy_files(other_files)
+
+# build sitemap.xml from list of pages
+#build_sitemap()
 
 # Zip files
 print('Zipping files')

@@ -11,7 +11,7 @@ Run `python test_build.py` to open a flask server to test your build.
 The development server runs on port 5000 and test build runs on 5001.
 
 # To Do
-- [ ] create a way to bundle html, css, javascript, and images to be uploaded on the server. Should compress images and code, remove extra spacing, remove line breaks, etc.
+- [x] create a way to bundle html, css, javascript, and images to be uploaded on the server. Should compress images and code, remove extra spacing, remove line breaks, etc.
 - [ ] create a way to generate sitemap.xml
 - [ ] embed projects into page so they are more uniform to the website instead of opening in a new tab. Project would open a new page where it has a title and description at the top of the page and an iframe underneath with the project.
 - [ ] embed fiverr gigs anywhere mixed in with the projects.
