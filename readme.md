@@ -4,6 +4,11 @@ This is a collection of my websites and onepagers. Also now has a blog!
 
 You can visit the live website at: http://indexdothtml.com/
 
+Run `python dev_server.py` for development and when you build your files.
+Run `python build.py` to build your files.
+Run `python test_build.py` to open a flask server to test your build.
+
+The development server runs on port 5000 and test build runs on 5001.
 
 # To Do
 - [ ] create a way to bundle html, css, javascript, and images to be uploaded on the server. Should compress images and code, remove extra spacing, remove line breaks, etc.
