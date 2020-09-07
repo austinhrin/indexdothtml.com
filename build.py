@@ -15,9 +15,6 @@ from PIL import Image
 # get current directory
 path = os.getcwd()
 
-# copy /images/favicon.ico to /favicon.ico
-# create a sitemap.xml file for the website.
-
 
 def save_file(contents, filename, folder_path):
     file = f'{path}/{folder_path}/{filename}'
@@ -130,6 +127,20 @@ def copy_files(files):
     for filename in files:
         shutil.copyfile(f'{path}/{filename}', f'{path}/build/{filename}')
 
+def build_sitemap(pages, url):
+    sitemap = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+    for page in pages:
+        if '.html' not in page:
+            page += '.html'
+        sitemap += f'<url><loc>{url + page}</loc></url>'
+    sitemap += '</urlset>'
+    # save to file
+    f = open(f'{path}/build/sitemap.xml', "x")
+    f.write(sitemap)
+    f.close()
+
+website_url = 'http://indexdothtml.com/'
+
 folders_to_create = ['build', 'build/blog', 'build/css', 'build/js', 'build/projects', 'build/images']
 
 list_of_pages = ['index', 'about', 'contact', 'blog']
@@ -200,7 +211,7 @@ build_images(image_files)
 copy_files(other_files)
 
 # build sitemap.xml from list of pages
-#build_sitemap()
+build_sitemap(list_of_pages, website_url)
 
 # Zip files
 print('Zipping files')
